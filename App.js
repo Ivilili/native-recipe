@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
+//import { SearchBar } from 'react-native-elements';
 
 export default class App extends Component {
 	state = {
@@ -18,11 +18,12 @@ export default class App extends Component {
 					style={{ width: '100%', height: '100%' }}
 				>
 					<View style={styles.containerTextInput}>
-						<Text>Find a recipe</Text>
-						<SearchBar
+						<Text style={styles.baseText}>Find a recipe</Text>
+						<TextInput
 							style={styles.searchInput}
 							onChangeText={this.updateSearch}
 							value={search}
+							placeholderTextColor="rgb(128,128,128)"
 							placeholder="Search..."
 						/>
 					</View>
@@ -35,6 +36,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		justifyContent: 'center',
 		alignItems: 'center'
 	},
 	containerTextInput: {
@@ -42,6 +44,23 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	searchInput: {
-		marginTop: 20
+		paddingLeft: 10,
+		height: 70,
+		fontSize: 26,
+		margin: 50,
+		marginTop: 0,
+		color: 'rgb(64, 72, 73)',
+		backgroundColor: 'transparent',
+		borderBottomColor: 'rgb(64, 72, 73)',
+		borderBottomWidth: 2
+	},
+	baseText: {
+		fontSize: 40,
+		fontWeight: 'bold',
+		textAlignVertical: 'center',
+		textAlign: 'center',
+		marginTop: 260,
+		fontFamily: 'Zapfino',
+		color: 'rgb(64, 72, 73)'
 	}
 });
