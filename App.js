@@ -1,30 +1,80 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
 //import { SearchBar } from 'react-native-elements';
+//import { Link } from 'react-router-native';
+
+import RecipeList from './components/RecipeList';
+
+const APP_ID = 'adaa83af';
+const APP_KEY = '7d25fa4bcf6fd1cd5502176b4c2565ae';
 
 export default class App extends Component {
 	state = {
-		search: ''
+		isLoading: false,
+		recipes: [],
+		query: 'chicken',
+		search: '',
+		error: null
 	};
-	updateSearch = (search) => {
-		this.setState({ search });
+	componentDidMount() {
+		this.getRecipes();
+	}
+
+	async getRecipes() {
+		const { query } = this.state;
+		this.setState({ isLoading: true });
+
+		const data = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+		const jsonData = await data.json();
+
+		if (jsonData.hits.length === undefined) {
+			this.setState(() => {
+				return {
+					error: 'No results, try again'
+				};
+			});
+		} else {
+			this.setState(() => {
+				return { recipes: jsonData.hits };
+			});
+			console.log(this.state.recipes);
+		}
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			search: e.target.value
+		});
+	};
+	handleSubmit = (e) => {
+		e.preventDefault();
+		const { search } = this.state;
+		this.setState(
+			() => {
+				return {
+					query: search
+				};
+			},
+			() => {
+				this.getRecipes();
+			}
+		);
 	};
 	render() {
-		const { search } = this.state;
+		console.log(this.state.recipes);
 		return (
 			<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 				<ImageBackground
 					source={{ uri: 'https://i.postimg.cc/NMQH7yY5/bg.jpg' }}
 					style={{ width: '100%', height: '100%' }}
 				>
-					<View style={styles.containerTextInput}>
-						<Text style={styles.baseText}>Find a recipe</Text>
-						<TextInput
-							style={styles.searchInput}
-							onChangeText={this.updateSearch}
-							value={search}
-							placeholderTextColor="rgb(128,128,128)"
-							placeholder="Search..."
+					<View>
+						<RecipeList
+							recipes={this.state.recipes}
+							value={this.state.search}
+							handleChange={this.handleChange}
+							handleSubmit={this.handleSubmit}
+							error={this.state.error}
 						/>
 					</View>
 				</ImageBackground>

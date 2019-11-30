@@ -1,13 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, AppRegistry } from 'react-native';
 
-import { NativeRouter, Route, Link } from 'react-router-native';
+import { NativeRouter, Route, Switch, Link } from 'react-router-native';
 
 export default (Router = () => {
 	<NativeRouter>
 		<View>
-			<Route exact path="/" component={App} />
-			<Route path="/recipe/:label" component={RecipeDetails} />
+			<Switch>
+				<Route exact path="/" component={Recipe} />
+				<Route path="/recipe" component={RecipeDetails} />
+			</Switch>
 		</View>
 	</NativeRouter>;
 });
