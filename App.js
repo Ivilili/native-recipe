@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
 //import { SearchBar } from 'react-native-elements';
 //import { Link } from 'react-router-native';
+import Search from './components/Search';
 
 import RecipeList from './components/RecipeList';
 
@@ -27,18 +28,9 @@ export default class App extends Component {
 		const data = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
 		const jsonData = await data.json();
 
-		if (jsonData.hits.length === undefined) {
-			this.setState(() => {
-				return {
-					error: 'No results, try again'
-				};
-			});
-		} else {
-			this.setState(() => {
-				return { recipes: jsonData.hits };
-			});
-			console.log(this.state.recipes);
-		}
+		this.setState(() => {
+			return { recipes: jsonData.hits };
+		});
 	}
 
 	handleChange = (e) => {
@@ -69,6 +61,11 @@ export default class App extends Component {
 					style={{ width: '100%', height: '100%' }}
 				>
 					<View>
+						<Search
+							value={this.props.value}
+							handleChange={this.handleChange}
+							handleSubmit={this.handleSubmit}
+						/>
 						<RecipeList
 							recipes={this.state.recipes}
 							value={this.state.search}

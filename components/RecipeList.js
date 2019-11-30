@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import Recipe from './Recipe';
-import Search from './Search';
 
 export default function RecipeList({ recipes, handleDetails, value, handleSubmit, handleChange, error, isLoading }) {
 	if (isLoading) {
@@ -13,8 +12,7 @@ export default function RecipeList({ recipes, handleDetails, value, handleSubmit
 	} else {
 		return (
 			<View style={styles.container}>
-				<Search value={value} handleChange={handleChange} handleSubmit={handleSubmit} />
-				{recipes.map((recipe, index) => {
+				{/* 	{recipes.map((recipe, index) => {
 					return (
 						<Recipe
 							key={index}
@@ -28,6 +26,8 @@ export default function RecipeList({ recipes, handleDetails, value, handleSubmit
 						/>
 					);
 				})}
+				*/}
+				<Recipe />
 			</View>
 		);
 	}

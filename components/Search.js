@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
 
-export default function App({ value, handleSubmit, handleChange }) {
+export default function Search({ value, handleSubmit, handleChange }) {
 	return (
 		<View style={styles.containerTextInput}>
 			<Text style={styles.baseText}>Find a recipe</Text>
