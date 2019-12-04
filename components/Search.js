@@ -1,17 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
 
-export default function Search({ value, handleSubmit, handleChange }) {
+export default function Search() {
 	return (
 		<View style={styles.containerTextInput}>
 			<Text style={styles.baseText}>Find a recipe</Text>
-			<TextInput
-				style={styles.searchInput}
-				onChangeText={this.handleChange}
-				value={value}
-				placeholderTextColor="rgb(128,128,128)"
-				placeholder="Search..."
-			/>
+			<TextInput style={styles.searchInput} placeholderTextColor="rgb(128,128,128)" placeholder="Search..." />
 		</View>
 	);
 }
