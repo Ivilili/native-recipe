@@ -9,12 +9,14 @@ import RecipeList from './RecipeList';
 
 export default class Home extends Component {
 	state = {
-		search: ''
+		search: '',
+		isLoading: true,
+		recipes: []
 	};
 
-	handleChange = (e) => {
+	handleChange = (text) => {
 		this.setState({
-			search: e.target.value
+			search: text
 		});
 	};
 
@@ -27,8 +29,13 @@ export default class Home extends Component {
 				>
 					<View>
 						<Text> Home</Text>
-						<Search />
-						<Button title="Go to Details" onPress={() => this.props.navigation.navigate('RecipeDetails')} />
+						{/*<Search value={this.props.value} onChangeText={this.handleChange} />
+						*/}
+						<Button
+							title="See the Recipes"
+							onPress={() => this.props.navigation.navigate('RecipeDetails')}
+						/>
+						<RecipeList />
 					</View>
 				</ImageBackground>
 			</KeyboardAvoidingView>
@@ -41,29 +48,5 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
-	},
-	containerTextInput: {
-		marginTop: 10,
-		justifyContent: 'center'
-	},
-	searchInput: {
-		paddingLeft: 10,
-		height: 70,
-		fontSize: 26,
-		margin: 50,
-		marginTop: 0,
-		color: 'rgb(64, 72, 73)',
-		backgroundColor: 'transparent',
-		borderBottomColor: 'rgb(64, 72, 73)',
-		borderBottomWidth: 2
-	},
-	baseText: {
-		fontSize: 40,
-		fontWeight: 'bold',
-		textAlignVertical: 'center',
-		textAlign: 'center',
-		marginTop: 260,
-		fontFamily: 'Zapfino',
-		color: 'rgb(64, 72, 73)'
 	}
 });

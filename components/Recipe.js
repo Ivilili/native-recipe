@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { Card, ListItem, Button, Icon } from 'react-native-elements';
 
 export default class Recipe extends Component {

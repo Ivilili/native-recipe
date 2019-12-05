@@ -1,37 +1,38 @@
 import React from 'react';
 import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 
 export default function Search() {
 	return (
 		<View style={styles.containerTextInput}>
 			<Text style={styles.baseText}>Find a recipe</Text>
-			<TextInput style={styles.searchInput} placeholderTextColor="rgb(128,128,128)" placeholder="Search..." />
+			<SearchBar
+				inputStyle={styles.searchInput}
+				inputContainerStyle={{ backgroundColor: 'transparent' }}
+				//containerStyle={{ backgroundColor: 'transparent'}}
+				onChangeText={(text) => this.handleChange(text)}
+				name="search"
+				value={this.props.search}
+				placeholderTextColor="rgb(128,128,128)"
+				placeholder="Search..."
+			/>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	containerTextInput: {
-		marginTop: 10,
-		justifyContent: 'center'
-	},
+	containerTextInput: {},
 	searchInput: {
-		paddingLeft: 10,
-		height: 70,
-		fontSize: 26,
-		margin: 50,
-		marginTop: 0,
+		fontSize: 24,
 		color: 'rgb(64, 72, 73)',
-		backgroundColor: 'transparent',
-		borderBottomColor: 'rgb(64, 72, 73)',
-		borderBottomWidth: 2
+		backgroundColor: 'transparent'
 	},
 	baseText: {
 		fontSize: 40,
 		fontWeight: 'bold',
 		textAlignVertical: 'center',
 		textAlign: 'center',
-		marginTop: 260,
+		marginTop: 165,
 		fontFamily: 'Zapfino',
 		color: 'rgb(64, 72, 73)'
 	}
