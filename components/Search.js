@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
-export default function Search() {
+export default function Search({ props }) {
 	return (
 		<View style={styles.containerTextInput}>
 			<Text style={styles.baseText}>Find a recipe</Text>
@@ -12,7 +12,6 @@ export default function Search() {
 				//containerStyle={{ backgroundColor: 'transparent'}}
 				onChangeText={(text) => this.handleChange(text)}
 				name="search"
-				value={this.props.search}
 				placeholderTextColor="rgb(128,128,128)"
 				placeholder="Search..."
 			/>

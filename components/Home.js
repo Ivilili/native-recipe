@@ -1,18 +1,55 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import {
+	StyleSheet,
+	View,
+	Text,
+	Button,
+	ImageBackground,
+	KeyboardAvoidingView,
+	TextInput,
+	ActivityIndicator
+} from 'react-native';
 
-//import { SearchBar } from 'react-native-elements';
-import Search from './Search';
-import RecipeList from './RecipeList';
+import { List, ListItem } from 'react-native-elements';
+//import Search from './Search';
+
+//const APP_ID = 'adaa83af';
+//const APP_KEY = '7d25fa4bcf6fd1cd5502176b4c2565ae';
 
 export default class Home extends Component {
 	state = {
+		recipes: [],
 		search: '',
-		isLoading: true,
-		recipes: []
+		isLoading: false,
+		name: null,
+		query: 'chicken',
+		error: null
 	};
+
+	componentDidMount() {
+		this.getRecipes();
+	}
+
+	async getRecipes() {
+		this.setState({ isLoading: true });
+		try {
+			const data = await fetch(
+				`https://api.edamam.com/search?q=chicken&app_id=adaa83af&app_key=7d25fa4bcf6fd1cd5502176b4c2565ae`
+			);
+			const jsonData = await data.json();
+			this.setState(() => {
+				return {
+					recipes: jsonData.hits,
+					isLoading: false
+				};
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	}
+	componentDidMount() {
+		this.getRecipes();
+	}
 
 	handleChange = (text) => {
 		this.setState({
@@ -21,22 +58,40 @@ export default class Home extends Component {
 	};
 
 	render() {
+		console.log(this.state.recipes);
 		return (
 			<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 				<ImageBackground
 					source={{ uri: 'https://i.postimg.cc/NMQH7yY5/bg.jpg' }}
 					style={{ width: '100%', height: '100%' }}
 				>
-					<View>
-						<Text> Home</Text>
-						{/*<Search value={this.props.value} onChangeText={this.handleChange} />
-						*/}
-						<Button
-							title="See the Recipes"
-							onPress={() => this.props.navigation.navigate('RecipeDetails')}
-						/>
-						<RecipeList />
-					</View>
+					{/* 
+					<Search value={this.state.search} onChangeText={this.handleChange} />
+
+					<Button
+						title="See the Recipe Details"
+						onPress={() => this.props.navigation.navigate('RecipeDetails')}
+					/>
+					*/}
+
+					{this.state.isLoading ? (
+						<View style={styles.container}>
+							<ActivityIndicator size="large" color="#7d90a0" />
+						</View>
+					) : (
+						<View>
+							{this.state.recipes.map((item, index) => {
+								return (
+									<ListItem
+										key={index}
+										leftAvatar={{ source: { uri: item.recipe.image } }}
+										title={item.recipe.label}
+										bottomDivider
+									/>
+								);
+							})}
+						</View>
+					)}
 				</ImageBackground>
 			</KeyboardAvoidingView>
 		);

@@ -1,25 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, ActivityIndicator, FlatList } from 'react-native';
-import Recipe from './Recipe';
+import { StyleSheet, View, Text, ActivityIndicator, FlatList, List } from 'react-native';
 
-export default function RecipeList() {
-	return (
-		<View style={styles.container}>
-			{this.props.isLoading ? (
-				<View style={styles.container}>
-					<ActivityIndicator size="large" color="#ffffff" />
-				</View>
-			) : null}
+const RecipeList = ({ recipes, renderRow, isLoading }) => {
+	return <View style={styles.container} />;
+};
 
-			<FlatList
-				data={this.props.recipes}
-				renderItem={this.renderItem}
-				ListEmptyComponent={() => <Text>No Recipes Found</Text>}
-			/>
-		</View>
-	);
-}
-//data={recipes}
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -27,3 +12,5 @@ const styles = StyleSheet.create({
 		backgroundColor: 'gray'
 	}
 });
+
+export default RecipeList;
