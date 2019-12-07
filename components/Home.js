@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { List, ListItem } from 'react-native-elements';
-//import Search from './Search';
+import Search from './Search';
 
 //const APP_ID = 'adaa83af';
 //const APP_KEY = '7d25fa4bcf6fd1cd5502176b4c2565ae';
@@ -58,21 +58,13 @@ export default class Home extends Component {
 	};
 
 	render() {
-		console.log(this.state.recipes);
 		return (
 			<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 				<ImageBackground
 					source={{ uri: 'https://i.postimg.cc/NMQH7yY5/bg.jpg' }}
 					style={{ width: '100%', height: '100%' }}
 				>
-					{/* 
 					<Search value={this.state.search} onChangeText={this.handleChange} />
-
-					<Button
-						title="See the Recipe Details"
-						onPress={() => this.props.navigation.navigate('RecipeDetails')}
-					/>
-					*/}
 
 					{this.state.isLoading ? (
 						<View style={styles.container}>
@@ -80,13 +72,20 @@ export default class Home extends Component {
 						</View>
 					) : (
 						<View>
-							{this.state.recipes.map((item, index) => {
+							{this.state.recipes.map((item) => {
 								return (
 									<ListItem
-										key={index}
+										key={item.recipe.label}
 										leftAvatar={{ source: { uri: item.recipe.image } }}
 										title={item.recipe.label}
 										bottomDivider
+										chevron
+										onPress={() =>
+											this.props.navigation.navigate('RecipeDetails', {
+												title: item.recipe.label,
+												image: item.recipe.image,
+												ingredients: item.recipe.ingredients
+											})}
 									/>
 								);
 							})}

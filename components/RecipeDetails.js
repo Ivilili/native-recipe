@@ -4,14 +4,20 @@ import { Card, ListItem, Button, Icon } from 'react-native-elements';
 
 export default class RecipeDetails extends Component {
 	render() {
+		const { navigation } = this.props;
+		const ingredients = this.props.navigation.state.params.ingredients;
+		console.log(ingredients);
 		return (
-			// implemented without image with header
-			<View style={styles.container}>
-				<Card title="CARD WITH DIVIDER">
-					<Text>Ingredients</Text>
-
+			<View>
+				<Card image={{ uri: navigation.getParam('image') }}>
+					<View style={styles.user}>
+						<Text> {navigation.getParam('title')} </Text>
+					</View>
 					<View>
-						<Text>Name</Text>
+						<Text>Ingredience</Text>
+						{ingredients.map((item, index) => {
+							return <ListItem key={index} title={item.text} bottomDivider />;
+						})}
 					</View>
 				</Card>
 			</View>
