@@ -2,30 +2,24 @@ import React from 'react';
 import { StyleSheet, View, Text, ImageBackground, KeyboardAvoidingView, TextInput } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
-export default function Search({ props }) {
+export default function Search({ search }) {
 	return (
 		<View style={styles.containerTextInput}>
 			<Text style={styles.baseText}>Find a recipe</Text>
 			<SearchBar
-				inputStyle={styles.searchInput}
 				inputContainerStyle={{ backgroundColor: 'transparent' }}
-				//containerStyle={{ backgroundColor: 'transparent'}}
+				containerStyle={{ backgroundColor: 'transparent' }}
 				onChangeText={(text) => this.handleChange(text)}
 				name="search"
-				placeholderTextColor="rgb(128,128,128)"
+				placeholderTextColor="rgb(64, 72, 73)"
 				placeholder="Search..."
+				value={search}
 			/>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	containerTextInput: {},
-	searchInput: {
-		fontSize: 24,
-		color: 'rgb(64, 72, 73)',
-		backgroundColor: 'transparent'
-	},
 	baseText: {
 		fontSize: 40,
 		fontWeight: 'bold',

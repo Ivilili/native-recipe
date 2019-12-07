@@ -76,8 +76,19 @@ export default class Home extends Component {
 								return (
 									<ListItem
 										key={item.recipe.label}
+										titleStyle={styles.list}
 										leftAvatar={{ source: { uri: item.recipe.image } }}
 										title={item.recipe.label}
+										subtitle={
+											<View>
+												<Text style={styles.subtitle}>
+													Number of Servings: {item.recipe.yield}
+												</Text>
+												<Text style={styles.subtitle}>
+													Calories: {Math.round(item.recipe.calories)}
+												</Text>
+											</View>
+										}
 										bottomDivider
 										chevron
 										onPress={() =>
@@ -102,5 +113,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	list: {
+		fontFamily: 'Palatino',
+		fontStyle: 'italic',
+		fontWeight: 'bold',
+		color: 'rgb(64, 72, 73)'
+	},
+	subtitle: {
+		color: '#442e26',
+		fontFamily: 'Palatino'
 	}
 });
