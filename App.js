@@ -8,12 +8,23 @@ import RecipeList from './components/RecipeList';
 
 const RootStack = createStackNavigator(
 	{
-		Home: Home,
-		RecipeList: RecipeList,
-		RecipeDetails: RecipeDetails
+		Home: {
+			screen: Home,
+			headerShown: false
+		},
+		RecipeList: {
+			screen: RecipeList
+		},
+		RecipeDetails: {
+			screen: RecipeDetails
+		}
 	},
 	{
 		initialRouteName: 'Home'
+	},
+	{
+		headerTransparent: true,
+		headerBackground: 'transparent'
 	}
 );
 const AppContainer = createAppContainer(RootStack);

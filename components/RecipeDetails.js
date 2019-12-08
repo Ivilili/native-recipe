@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { Card, ListItem, Button, Icon, Text } from 'react-native-elements';
 
 export default class RecipeDetails extends Component {
@@ -9,20 +9,25 @@ export default class RecipeDetails extends Component {
 
 		return (
 			<View>
-				<Card image={{ uri: navigation.getParam('image') }} imageStyle={{ width: '100%' }}>
-					<View>
-						<Text h4 style={styles.title}>
-							{navigation.getParam('title')}
-						</Text>
-					</View>
-					<View>
-						<Text h3 style={styles.subtitle}>
-							Ingredients
-						</Text>
-						{ingredients.map((item, index) => {
-							return <ListItem key={index} titleStyle={styles.list} title={item.text} bottomDivider />;
-						})}
-					</View>
+				<Card image={{ uri: navigation.getParam('image') }} imageStyle={{ width: '100%', height: 300 }}>
+					<ScrollView>
+						<View>
+							<Text h5 style={styles.title}>
+								{navigation.getParam('title')}
+							</Text>
+						</View>
+
+						<View>
+							<Text h3 style={styles.subtitle}>
+								Ingredients
+							</Text>
+							{ingredients.map((item, index) => {
+								return (
+									<ListItem key={index} titleStyle={styles.list} title={item.text} bottomDivider />
+								);
+							})}
+						</View>
+					</ScrollView>
 				</Card>
 			</View>
 		);
@@ -36,12 +41,12 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	title: {
+		fontSize: 18,
 		fontWeight: 'bold',
 		textAlignVertical: 'center',
 		textAlign: 'center',
 		fontFamily: 'Zapfino',
-		color: 'rgb(64, 72, 73)',
-		letterSpacing: 2
+		color: 'rgb(64, 72, 73)'
 	},
 	subtitle: {
 		fontFamily: 'Palatino',
