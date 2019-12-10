@@ -25,10 +25,6 @@ export default class RecipeList extends Component {
 		error: null
 	};
 
-	componentDidMount() {
-		this.getRecipes();
-	}
-
 	async getRecipes() {
 		const { query } = this.state;
 		this.setState({ isLoading: true });
@@ -50,14 +46,14 @@ export default class RecipeList extends Component {
 	}
 
 	handleChange = (text) => {
+		const { search } = this.state;
 		this.setState(
 			{
 				search: text,
-				query: this.state.search
+				query: search
 			},
 			() => this.getRecipes()
 		);
-		console.log(this.state.query);
 	};
 	componentWillUnmount() {}
 
@@ -74,6 +70,7 @@ export default class RecipeList extends Component {
 							round
 							lightTheme
 							searchIcon={{ size: 26 }}
+							containerStyle={{ marginTop: 40 }}
 							onChangeText={(text) => this.handleChange(text)}
 							name="search"
 							placeholder="Search..."

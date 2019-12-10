@@ -10,7 +10,7 @@ import {
 	ActivityIndicator
 } from 'react-native';
 
-import { List, ListItem, SearchBar } from 'react-native-elements';
+import { List, ListItem, SearchBar, Icon } from 'react-native-elements';
 
 export default class Home extends Component {
 	render() {
@@ -21,11 +21,6 @@ export default class Home extends Component {
 			>
 				<View style={styles.container}>
 					<Text style={styles.baseText}>Find a recipe</Text>
-					<Button
-						color="rgb(64, 72, 73)"
-						title="Recipes"
-						onPress={() => this.props.navigation.navigate('RecipeList')}
-					/>
 				</View>
 			</ImageBackground>
 		);
@@ -35,6 +30,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		marginTop: 20,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},

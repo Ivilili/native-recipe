@@ -8,7 +8,7 @@ export default class RecipeDetails extends Component {
 		const ingredients = this.props.navigation.state.params.ingredients;
 
 		return (
-			<View>
+			<View style={styles.container}>
 				<Card image={{ uri: navigation.getParam('image') }} imageStyle={{ width: '100%', height: 300 }}>
 					<ScrollView>
 						<View>
@@ -36,9 +36,7 @@ export default class RecipeDetails extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
+		marginTop: 40
 	},
 	title: {
 		fontSize: 18,
