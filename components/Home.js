@@ -9,6 +9,7 @@ import {
 	TextInput,
 	ActivityIndicator
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { List, ListItem, SearchBar, Icon } from 'react-native-elements';
 
@@ -21,6 +22,15 @@ export default class Home extends Component {
 			>
 				<View style={styles.container}>
 					<Text style={styles.baseText}>Find a recipe</Text>
+
+					<Ionicons
+						name="md-checkmark-circle"
+						size={32}
+						color="green"
+						onPress={() => {
+							this.props.navigation.push('RecipeList');
+						}}
+					/>
 				</View>
 			</ImageBackground>
 		);

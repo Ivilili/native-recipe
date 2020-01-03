@@ -21,7 +21,7 @@ export default class RecipeList extends Component {
 		recipes: [],
 		search: '',
 		isLoading: null,
-		query: 'cookie',
+		query: 'cookies',
 		error: null
 	};
 
@@ -29,7 +29,9 @@ export default class RecipeList extends Component {
 		const { query } = this.state;
 		this.setState({ isLoading: true });
 		try {
-			const data = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+			const data = await fetch(
+				`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=50`
+			);
 			const jsonData = await data.json();
 			this.setState(() => {
 				return {
@@ -55,7 +57,6 @@ export default class RecipeList extends Component {
 			() => this.getRecipes()
 		);
 	};
-	componentWillUnmount() {}
 
 	render() {
 		const { recipes } = this.state;
@@ -78,15 +79,15 @@ export default class RecipeList extends Component {
 						/>
 
 						{this.state.isLoading ? (
-							<View style={styles.container}>
-								<ActivityIndicator size="large" color="#7d90a0" />
+							<View style={styles.spinner}>
+								<ActivityIndicator size="large" color="#ffffff" />
 							</View>
 						) : (
 							<View>
-								{recipes.map((item) => {
+								{recipes.map((item, index) => {
 									return (
 										<ListItem
-											key={item.recipe.label}
+											key={index}
 											titleStyle={styles.list}
 											leftAvatar={{ source: { uri: item.recipe.image } }}
 											title={item.recipe.label}
@@ -125,6 +126,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	spinner: {
+		marginTop: 150
 	},
 	list: {
 		fontFamily: 'Palatino',

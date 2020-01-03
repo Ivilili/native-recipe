@@ -18,7 +18,7 @@ export default class RecipeDetails extends Component {
 						</View>
 
 						<View>
-							<Text h3 style={styles.subtitle}>
+							<Text h4 style={styles.subtitle}>
 								Ingredients
 							</Text>
 							{ingredients.map((item, index) => {
