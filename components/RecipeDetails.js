@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import { Card, ListItem, Button, Icon, Text } from 'react-native-elements';
+import { Card, ListItem, Button, Icon, Text, Image } from 'react-native-elements';
 
 export default class RecipeDetails extends Component {
 	render() {
@@ -9,7 +9,8 @@ export default class RecipeDetails extends Component {
 
 		return (
 			<View style={styles.container}>
-				<Card image={{ uri: navigation.getParam('image') }} imageStyle={{ width: '100%', height: 300 }}>
+				<Image source={{ uri: navigation.getParam('image') }} style={{ width: '100%', height: 300 }} />
+				<Card>
 					<ScrollView>
 						<View>
 							<Text h5 style={styles.title}>
@@ -18,6 +19,15 @@ export default class RecipeDetails extends Component {
 						</View>
 
 						<View>
+							<Icon
+								name="bowl"
+								type="entypo"
+								size={30}
+								color="rgb(64, 72, 73)"
+								onPress={() => {
+									this.props.navigation.push('RecipeList');
+								}}
+							/>
 							<Text h4 style={styles.subtitle}>
 								Ingredients
 							</Text>
@@ -39,11 +49,12 @@ const styles = StyleSheet.create({
 		marginTop: 40
 	},
 	title: {
-		fontSize: 18,
+		fontSize: 22,
+		padding: 10,
 		fontWeight: 'bold',
 		textAlignVertical: 'center',
 		textAlign: 'center',
-		fontFamily: 'Zapfino',
+		fontFamily: 'Palatino',
 		color: 'rgb(64, 72, 73)'
 	},
 	subtitle: {

@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	Text,
-	Button,
-	ImageBackground,
-	KeyboardAvoidingView,
-	TextInput,
-	ActivityIndicator
-} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import { List, ListItem, SearchBar, Icon } from 'react-native-elements';
+import { StyleSheet, View, Text, ImageBackground } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 export default class Home extends Component {
 	render() {
@@ -23,10 +12,11 @@ export default class Home extends Component {
 				<View style={styles.container}>
 					<Text style={styles.baseText}>Find a recipe</Text>
 
-					<Ionicons
-						name="md-checkmark-circle"
-						size={32}
-						color="green"
+					<Icon
+						name="bowl"
+						type="entypo"
+						size={56}
+						color="rgb(64, 72, 73)"
 						onPress={() => {
 							this.props.navigation.push('RecipeList');
 						}}
@@ -52,5 +42,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontFamily: 'Zapfino',
 		color: 'rgb(64, 72, 73)'
-	}
+	},
+	icon: {}
 });

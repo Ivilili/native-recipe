@@ -59,7 +59,7 @@ export default class RecipeList extends Component {
 	};
 
 	render() {
-		const { recipes } = this.state;
+		const { recipes, isLoading } = this.state;
 		return (
 			<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 				<ImageBackground
@@ -78,7 +78,7 @@ export default class RecipeList extends Component {
 							value={this.state.search}
 						/>
 
-						{this.state.isLoading ? (
+						{isLoading ? (
 							<View style={styles.spinner}>
 								<ActivityIndicator size="large" color="#ffffff" />
 							</View>
