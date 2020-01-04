@@ -42,6 +42,5 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontFamily: 'Zapfino',
 		color: 'rgb(64, 72, 73)'
-	},
-	icon: {}
+	}
 });

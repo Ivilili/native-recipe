@@ -11,7 +11,7 @@ export default class RecipeDetails extends Component {
 			<View style={styles.container}>
 				<Image source={{ uri: navigation.getParam('image') }} style={{ width: '100%', height: 300 }} />
 				<Card>
-					<ScrollView>
+					<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 						<View>
 							<Text h5 style={styles.title}>
 								{navigation.getParam('title')}
@@ -46,7 +46,8 @@ export default class RecipeDetails extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 40
+		marginTop: 40,
+		flex: 1
 	},
 	title: {
 		fontSize: 22,
