@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-export default class Home extends Component {
+export default class Home extends React.Component {
 	render() {
 		return (
 			<ImageBackground

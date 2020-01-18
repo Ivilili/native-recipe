@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -25,7 +25,7 @@ const StackNavigator = createStackNavigator(
 );
 const AppContainer = createAppContainer(StackNavigator);
 
-export default class App extends Component {
+export default class App extends React.Component {
 	render() {
 		return <AppContainer />;
 	}

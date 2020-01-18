@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { Card, ListItem, Button, Icon, Text, Image } from 'react-native-elements';
 
-export default class RecipeDetails extends Component {
+export default class RecipeDetails extends React.Component {
 	render() {
 		const { navigation } = this.props;
 		const ingredients = this.props.navigation.state.params.ingredients;

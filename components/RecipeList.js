@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
 	StyleSheet,
 	View,
@@ -16,7 +16,7 @@ import { List, ListItem, SearchBar } from 'react-native-elements';
 const APP_ID = 'adaa83af';
 const APP_KEY = '7d25fa4bcf6fd1cd5502176b4c2565ae';
 
-export default class RecipeList extends Component {
+export default class RecipeList extends React.Component {
 	state = {
 		recipes: [],
 		search: '',
@@ -84,34 +84,36 @@ export default class RecipeList extends Component {
 							</View>
 						) : (
 							<View>
-								{recipes.map((item, index) => {
-									return (
-										<ListItem
-											key={index}
-											titleStyle={styles.list}
-											leftAvatar={{ source: { uri: item.recipe.image } }}
-											title={item.recipe.label}
-											subtitle={
-												<View>
-													<Text style={styles.subtitle}>
-														Number of Servings: {item.recipe.yield}
-													</Text>
-													<Text style={styles.subtitle}>
-														Calories: {Math.round(item.recipe.calories)}
-													</Text>
-												</View>
-											}
-											bottomDivider
-											chevron
-											onPress={() =>
-												this.props.navigation.navigate('RecipeDetails', {
-													title: item.recipe.label,
-													image: item.recipe.image,
-													ingredients: item.recipe.ingredients
-												})}
-										/>
-									);
-								})}
+								{recipes === undefined ? null : (
+									recipes.map((item, index) => {
+										return (
+											<ListItem
+												key={index}
+												titleStyle={styles.list}
+												leftAvatar={{ source: { uri: item.recipe.image } }}
+												title={item.recipe.label}
+												subtitle={
+													<View>
+														<Text style={styles.subtitle}>
+															Number of Servings: {item.recipe.yield}
+														</Text>
+														<Text style={styles.subtitle}>
+															Calories: {Math.round(item.recipe.calories)}
+														</Text>
+													</View>
+												}
+												bottomDivider
+												chevron
+												onPress={() =>
+													this.props.navigation.navigate('RecipeDetails', {
+														title: item.recipe.label,
+														image: item.recipe.image,
+														ingredients: item.recipe.ingredients
+													})}
+											/>
+										);
+									})
+								)}
 							</View>
 						)}
 					</ScrollView>
